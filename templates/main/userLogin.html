@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+<style>
+
+    a.btn{
+      margin-top: 20%;
+    }
+    .modal{
+     max-height:100%;
+     overflow:hidden;
+    }
+
+    input[type="submit"]{
+      width: 100%;
+      margin-top: 50px;
+    }
+    .modal-close{
+      position: absolute;
+      top:10px;
+      right:10px;
+      padding:0;
+      margin:0;
+    }
+
+    .card{
+        margin-right: 20%;
+        margin-left: 20%;
+        background-color: black;
+    }
+    .avatar{
+        height: 300;
+        width: 300;
+        top:-50px;
+    }
+</style>
+
+<div class="container center">
+    <br>
+    <div class="card">
+        <img src="{% static 'css/images/userLogo.png' %}" class="avatar">
+        <div>
+            <h3 style="color:white;">HELLO USER</h3>
+            <input type="checkbox" id="check">
+        <label for="check">Remember Me</label>
+        </div>
+        <div>
+         <a href="#login" class="btn btn-large teal modal-trigger">Login</a>
+         <a href="{% url 'userRegister' %}" class="btn btn-large teal modal-trigger">Signup</a>
+        </div>
+    </div>
+
+<div id="login" class="modal ">
+  <h5 class="modal-close">&#10005;</h5>
+  <div class="modal-content center">
+    <h4>Login Form</h4>
+    <br>
+
+    <form method="post">
+
+      <div class="input-field">
+        <i class="material-icons prefix">person</i>
+          {% csrf_token %}
+        {{ form.username }}
+        <label for="name">Username</label>
+      </div>
+      <br>
+
+      <div class="input-field">
+        <i class="material-icons prefix">lock</i>
+        {{ form.password }}
+        <label for="pass">Password</label>
+      </div>
+      <br>
+
+      <input type="submit" class="btn btn-large">
+
+    </form>
+  </div>
+
+{% endblock content %}

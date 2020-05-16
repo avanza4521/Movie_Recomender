@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+        <div class="row">
+            {% for movie in movies %}
+            <form action="{% url 'movieDetail' %}">
+            <div class="col s3">
+                <h4><a href="{{ movie.pk }}">{{ movie.movie_title }}</a></h4>
+                  <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                      <img class="activator" src="{{ movie.movie_image_url }}" style="width:300px;height:300px;">
+                    </div>
+                    <div class="card-content" style="word-wrap: break-word;">
+                      <span class="card-title activator grey-text text-darken-4"><a href="{{ movie.pk }}" style="color: black; font-weight: bold;">{{ movie.movie_title }}</a><i class="material-icons right">more_vert</i></span>
+                    </div>
+                    <div class="card-reveal">
+                      <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                      <p>{{ movie.movie_desc }}</p>
+                    </div>
+                  </div>
+            </div>
+
+            {% endfor %}
+            </form>
+        </div>
+</div>
+
+{% endblock content %}

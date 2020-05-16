@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    h2{
+    font-family: Helvetica;
+    }
+    h4{
+    font-family: Helvetica;
+    }
+    h5{
+    font-family: Helvetica;
+    color: white;
+    }
+</style>
+<diV class="container movie-details">
+<div class="row">
+<div class="col s3">
+
+    <div class="movie-image">
+        <br>
+        <img width="250" height="250" class="responsive-img" src="{{ image }}" alt="{{ image }}" style="border: solid white 5px;"/>
+    </div>
+</div>
+    <br>
+<div class="col s8" style="background-color:black;">
+    <div class="movie-description" >
+    <h2>{{ title }}</h2>
+        <h4><font color="white">Sypnopsis:<br></font></h4>
+        <a><font color="#a3a2a0">{{ description }}</font></a>
+        <br>
+        <br>
+        <a><font color="white">Genre : </font></a>
+        {% if adventure %}
+        <a href="#">Adventure,</a>
+        {% endif %}
+        {% if action %}
+        <a href="#">Action,</a>
+        {% endif %}
+        {% if animation %}
+        <a href="#">Animation,</a>
+        {% endif %}
+        {% if horror %}
+        <a href="#">horror</a>
+        {% endif %}
+    </div>
+    <br><br>
+    <div class="col s6">
+    <h5>Rating : {{ rating }}</h5>
+    </div>
+    <div class="col s6">
+        <h5>IMDb : {{ imdb }}</h5>
+    </div>
+</div>
+</div>
+    <div class="row">
+        <div class="col s5">
+    <div class="video-container">
+            <iframe width="200" height="200" src="{{ youtube }}" frameborder="0" allowfullscreen></iframe>
+    </div>
+        </div>
+        <div class="col s7">
+         <div class="movie-similar">
+             <h5>Similar Movie  </h5><br>
+            <img width="150" height="150" class="responsive-img" src="{{ image }}" alt="{{ image }}" style="border: solid white 5px;"/>
+             <img width="150" height="150" class="responsive-img" src="{{ image }}" alt="{{ image }}" style="border: solid white 5px;"/>
+             <img width="150" height="150" class="responsive-img" src="{{ image }}" alt="{{ image }}" style="border: solid white 5px;"/>
+             <img width="150" height="150" class="responsive-img" src="{{ image }}" alt="{{ image }}" style="border: solid white 5px;"/>
+         </div>
+        </div>
+    </div>
+
+    <div class="row">
+         <div class="col s6">
+             {% for com in commentpositive %}
+             <h5>{{ com }}</h5>
+             {% endfor %}
+         </div>
+         <div class="col s6">
+            {% for com in commentnegative %}
+             <h5>{{ com }}</h5>
+             {% endfor %}
+         </div>
+     </div>
+
+</div>
+
+
+
+{% endblock content %}

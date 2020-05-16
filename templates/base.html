@@ -1,0 +1,88 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Recommender</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(e){
+        $('.modal').modal();
+        $('.dropdown-trigger').dropdown();
+        });
+    </script>
+</head>
+<body>
+<ul id="dropdown1" class="dropdown-content">
+    <form>
+      <li><a href="/s/action">Action</a></li>
+      <li><a href="/s/adventure">Adventure</a></li>
+      <li><a href="#!">Horror</a></li>
+      <li class="divider"></li>
+      <li><a href="#!">Animation</a></li>
+      <li><a href="#!">Drama</a></li>
+    </form>
+</ul>
+<ul id="dropdown2" class="dropdown-content">
+      <li><a href="#!">Edit Profile</a></li>
+      <li class="divider"></li>
+      <li><a href="{% url 'userLogout' %}">Log out</a></li>
+</ul>
+  <nav class="nav-extended teal lighten-1 md10">
+    <div class="nav-wrapper">
+        <div class="container">
+      <a href="{% url 'home' %}" class="brand-logo"><i class="material-icons">video_library</i>Movie Recommender</a>
+      <ul class="right hide-on-med-and-down">
+          <li>  <nav class="black">
+                    <div class="nav-wrapper">
+                      <form action="/s/" role="search">
+                        <div class="input-field">
+                          <input name="search" id="search" type="search" required>
+                          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                          <i class="material-icons">close</i>
+                        </div>
+                      </form>
+                    </div>
+                  </nav></li>
+
+            <li><a href="sass.html">About</a></li>
+            <li><a href="badges.html">Contact</a></li>
+            {% if user.is_authenticated %}
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">{{ user.get_username }}<i class="material-icons right">arrow_drop_down</i></a></li>
+            <!--<li><a href="{ url'logout'%}?next={{request.path}}">Logout</a></li>!-->
+            {% else %}
+            <li><a href="{% url 'userLogin' %}">Sign in</a></li>
+
+            {% endif %}
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Genre<i class="material-icons right">arrow_drop_down</i></a></li>
+      </ul>
+        </div>
+    </div>
+      <div class="nav-content">
+
+      <span class="nav-title"></span>
+      <a class="btn-floating btn-large halfway-fab waves-effect waves-light teal">
+        <i class="material-icons">add</i>
+      </a>
+    </div>
+  </nav>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+{% block content %}
+
+{% endblock content %}
+
+  <script src="{% static 'css/js/dropdown.js' %}"></script>
+  <script src="{% static 'css/js/app.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

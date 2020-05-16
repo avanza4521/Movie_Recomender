@@ -1,0 +1,14 @@
+{% extends 'admin/change_list.html' %}
+
+{% block object-tools %}
+  <h2>Enter The Link From Imdb to Update The Movie </h2>
+    <form id="updatemovie" method="post" action="{% url 'movieUpdate' %}">
+        {% csrf_token%}
+        <input name="movieLink" class="vTextField" size="70">
+        <button class="button" type="submit">Update Automatically</button>
+    </form>
+    <br>
+
+{{ block.super }}
+
+{% endblock %}
